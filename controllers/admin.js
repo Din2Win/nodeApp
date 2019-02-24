@@ -1,32 +1,32 @@
-const Product = require('../models/product');
+const Ad = require('../models/ad');
 
-exports.getAddProduct = (req, res, next) => {
-  res.render('admin/add-product', {
-    pageTitle: 'Add Product',
-    path: '/admin/add-product',
+exports.getAddAd = (req, res, next) => {
+  res.render('admin/add-ad', {
+    pageTitle: 'Add ad',
+    path: '/admin/add-ad',
     formsCSS: true,
-    productCSS: true,
-    activeAddProduct: true
+    adCSS: true,
+    activeAddAd: true
   });
 };
 
-exports.postAddProduct = (req, res, next) => {
+exports.postAddAd = (req, res, next) => {
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
 
-  const product = new Product(title, imageUrl, price, description);
-  product.save();
+  const ad = new ad(title, imageUrl, price, description);
+  Ad.save();
   res.redirect('/');
 };
 
-exports.getProducts = (req, res, next) => {
-  Product.fetchAll(products => {
-    res.render('admin/products', {
-      prods: products,
-      pageTitle: 'Admin Products',
-      path: '/admin/products'
+exports.getAds = (req, res, next) => {
+  Ad.fetchAll(ads => {
+    res.render('admin/ads', {
+      prods: ads,
+      pageTitle: 'Admin ads',
+      path: '/admin/ads'
     });
   });
 };

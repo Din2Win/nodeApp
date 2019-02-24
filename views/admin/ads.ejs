@@ -1,0 +1,43 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/ad.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+            <main>
+                <% if (prods.length > 0) { %>
+                    <div class="grid">
+                        <% for (let ad of prods) { %>
+                            <article class="card ad-item">
+                                <header class="card__header">
+                                    <h1 class="ad__title">
+                                        <%= ad.title %>
+                                    </h1>
+                                </header>
+                                <div class="card__image">
+                                    <img src="<%= ad.imageUrl %>" alt="<%= ad.title %>">
+                                </div>
+                                <div class="card__content">
+                                    <h2 class="ad__price">$
+                                        <%= ad.price %>
+                                    </h2>
+                                    <p class="ad__description">
+                                        <%= ad.description %>
+                                    </p>
+                                </div>
+                                <div class="card__actions">
+                                    <a href="/admin/edit-ad" class="btn">Edit</a>
+                                    <form action="/admin/delete-ad" method="POST">
+                                        <button class="btn" type="submit">Delete</button>
+                                    </form>
+
+                                </div>
+                            </article>
+                            <% } %>
+                    </div>
+                    <% } else { %>
+                        <h1>No ads Found!</h1>
+                        <% } %>
+            </main>
+            <%- include('../includes/end.ejs') %>
